@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Bag - Rajwada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-maroon': '#4a1c1d',
+                        'gold': '#b58b4c',
+                        'champagne': '#f9f6f0',
+                        'dark-brown': '#2c1e16',
+                    },
+                    fontFamily: { serif: ['"Playfair Display"', 'serif'], sans: ['"Lato"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-sans antialiased text-gray-800 bg-champagne min-h-screen flex flex-col">
+
+    <!-- Header (Simplified for subpages) -->
+    <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-200">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-3xl font-serif font-bold text-deep-maroon">RAJWADA</a>
+            <div class="flex items-center gap-6 text-deep-maroon">
+                <a href="wishlist.html" class="hover:text-gold transition-colors relative">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    <span class="wishlist-count absolute -top-1 -right-2 bg-gold text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+                </a>
+                <a href="shopping-bag.html" class="hover:text-gold transition-colors relative">
+                    <svg class="w-6 h-6" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span class="cart-count absolute -top-1 -right-2 bg-gold text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow py-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-serif text-deep-maroon font-bold mb-8">Shopping Bag</h1>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Items List -->
+                <div class="flex-1" id="shopping-bag-items">
+                    <!-- JS handles rendering here -->
+                </div>
+
+                <!-- Order Summary -->
+                <div class="w-full lg:w-96 shrink-0">
+                    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 sticky top-24">
+                        <h2 class="text-xl font-serif font-bold text-deep-maroon mb-6 border-b border-gray-100 pb-4">Order Summary</h2>
+                        
+                        <div class="space-y-4 mb-6 text-sm text-gray-600">
+                            <div class="flex justify-between">
+                                <span>Subtotal</span>
+                                <span id="summary-subtotal" class="font-medium text-gray-900">â‚¹0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Discount</span>
+                                <span class="text-green-600">- â‚¹0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Shipping</span>
+                                <span>Free</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-gray-100 pt-4 mb-8 flex justify-between items-center">
+                            <span class="font-bold text-gray-900">Estimated Total</span>
+                            <span id="summary-total" class="text-xl font-bold text-gold">â‚¹0</span>
+                        </div>
+                        
+                        <button class="w-full bg-deep-maroon text-white py-4 rounded-sm font-bold uppercase tracking-wider text-sm hover:bg-gold transition-colors shadow-md">
+                            Proceed to Checkout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if(window.toast) window.toast.init();
+            if(window.wishlist) window.wishlist.init();
+            if(window.cart) window.cart.init();
+        });
+    </script>
+</body>
+</html>

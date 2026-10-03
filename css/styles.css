@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+html, body {
+    overflow-x: clip;
+    max-width: 100vw;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: #ffffff;
+}
+
+body {
+    background-color: theme('colors.ivory');
+    color: theme('colors.gray.800');
+}
+
+/* Custom Selection Color */
+::selection {
+    background-color: theme('colors.gold');
+    color: theme('colors.deep-maroon');
+}
+
+/* Mega Menu Hover Intent */
+.group:hover .group-hover\:block {
+    display: block;
+}
+
+/* Smooth Scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ── RAJWADA Logo shimmer on hover ── */
+header a[href="index.html"]:hover span:first-of-type {
+    background: linear-gradient(90deg, #4a1c1d 0%, #b58b4c 45%, #4a1c1d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Bottom nav pill hover glow ── */
+nav a.group:hover {
+    box-shadow: 0 2px 14px rgba(74, 28, 29, 0.18);
+}
+
+/* ── Carousel slide text drop-shadow for readability ── */
+.carousel-slide h1 {
+    text-shadow: 0 2px 24px rgba(0,0,0,0.4);
+}
+
+/* ── Dots styling ── */
+#carousel-dots button {
+    transition: all 0.3s ease;
+}
+
+/* ── Smooth carousel arrow reveal ── */
+#carousel-prev, #carousel-next {
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+#carousel-prev:hover, #carousel-next:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* ── 3D Twist Image Showcase Effect on Hover ── */
+.perspective-1000 {
+    perspective: 1000px;
+}
+.transform-style-3d {
+    transform-style: preserve-3d;
+}
+.backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+    transform: rotateY(180deg);
+}
+
+.twist-card {
+    perspective: 1000px;
+}
+.twist-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+.twist-card:hover .twist-inner {
+    transform: rotateY(180deg);
+}
+.twist-front, .twist-back {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.twist-back {
+    transform: rotateY(180deg);
+}

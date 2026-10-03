@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajwada - Premium Royal Jewellery</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'maroon': '#800000',
+                        'deep-maroon': '#4a1c1d',
+                        'burgundy': '#6b1f24',
+                        'royal-pink': '#e5989b',
+                        'rose-pink': '#ffb5a7',
+                        'gold': '#b58b4c',
+                        'champagne': '#f9f6f0',
+                        'ivory': '#fffdf9',
+                        'dark-brown': '#2c1e16',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        ::selection { background-color: #b58b4c; color: #fff; }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-champagne">
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
+        <!-- Top Row -->
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-deep-maroon hover:text-gold transition-colors shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+
+            <!-- Logo â€” Regal RAJWADA brand -->
+            <a href="index.html" class="shrink-0 flex flex-col items-center leading-none group select-none">
+                <!-- Crown SVG -->
+                <svg class="w-8 h-8 md:w-9 md:h-9 text-gold mb-1 group-hover:scale-110 transition-transform duration-700 drop-shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 18h16" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 21h14" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 18l-1.5-9 5.5 3.5 3.5-8 3.5 8 5.5-3.5-1.5 9" />
+                    <circle cx="12" cy="4.5" r="1.5" fill="currentColor" stroke="none" />
+                    <circle cx="3" cy="9" r="1" fill="currentColor" stroke="none" />
+                    <circle cx="21" cy="9" r="1" fill="currentColor" stroke="none" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14v4" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 15v3" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 15v3" />
+                    <circle cx="12" cy="14" r="1" />
+                </svg>
+                <span class="text-[28px] tracking-[0.25em] font-serif font-bold text-deep-maroon group-hover:text-gold transition-colors duration-300">RAJWADA</span>
+                <span class="text-[8px] tracking-[0.5em] text-gold/80 uppercase font-sans font-semibold mt-0.5">Royal Jewellery</span>
+            </a>
+
+            <!-- Search Box (Middle) -->
+            <div class="hidden lg:flex flex-1 max-w-2xl mx-auto relative group">
+                <div class="flex w-full items-center border border-gray-300 rounded-full bg-white overflow-hidden focus-within:border-deep-maroon transition-colors px-4 py-2 shadow-sm gap-1">
+                    <svg class="w-5 h-5 text-deep-maroon shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <!-- Animated placeholder wrapper -->
+                    <div class="relative flex-1 min-w-0" style="height:1.5em;">
+                        <input type="text" id="header-search-input" placeholder="" class="absolute inset-0 w-full bg-transparent px-3 text-sm focus:outline-none text-gray-700" autocomplete="off">
+                        <!-- Slide-up animated placeholder overlay -->
+                        <div id="search-anim-placeholder" class="absolute inset-0 flex items-center px-3 pointer-events-none overflow-hidden" style="transition: opacity 0.2s ease;">
+                            <span class="text-gray-400 text-sm shrink-0">Search for&nbsp;</span>
+                            <div class="relative overflow-hidden flex-1" style="height:1.2em;">
+                                <span id="search-word-a" class="absolute left-0 text-gray-400 text-sm" style="transition: transform 0.38s cubic-bezier(.4,0,.2,1), opacity 0.38s ease; transform:translateY(0); opacity:1;"></span>
+                                <span id="search-word-b" class="absolute left-0 text-gray-400 text-sm" style="transition: transform 0.38s cubic-bezier(.4,0,.2,1), opacity 0.38s ease; transform:translateY(110%); opacity:0;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="search-clear-btn" class="hidden text-gray-400 hover:text-deep-maroon p-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                    <!-- Camera / Image Search -->
+                    <button id="search-camera-btn" title="Search by image" class="text-gray-400 hover:text-deep-maroon transition-colors p-1 shrink-0">
+                        <input type="file" id="search-image-input" accept="image/*" class="hidden">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+                            <circle cx="12" cy="13" r="4"/>
+                            <path stroke-linecap="round" d="M18 8.5h.01"/>
+                        </svg>
+                    </button>
+                    <!-- Microphone / Voice Search -->
+                    <button id="search-mic-btn" title="Search by voice" class="text-gray-400 hover:text-deep-maroon transition-colors p-1 shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                            <rect x="9" y="2" width="6" height="11" rx="3"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10a7 7 0 0014 0M12 19v3M9 22h6"/>
+                        </svg>
+                    </button>
+                </div>
+                <!-- Inline Search Results Dropdown -->
+                <div id="header-search-results" class="absolute top-full left-0 w-full bg-white shadow-xl border border-gray-100 mt-2 hidden max-h-[60vh] overflow-y-auto z-50 rounded-lg">
+                </div>
+            </div>
+
+            <!-- 4 Icons (Right) -->
+            <div class="flex items-center gap-5 md:gap-8 text-deep-maroon shrink-0">
+                <!-- 1. Product Mega Menu Icon -->
+                <a href="#" id="nav-product-icon" class="hover:text-gold transition-colors" title="Categories">
+                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                </a>
+                
+                <!-- 2. Wishlist -->
+                <a href="wishlist.html" class="hover:text-gold transition-colors relative" title="Wishlist">
+                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    <span class="wishlist-count absolute -top-1 -right-2 bg-gold text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+                </a>
+
+                <!-- 3. Shopping Bag -->
+                <a href="shopping-bag.html" class="hover:text-gold transition-colors relative" title="Shopping Bag">
+                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span class="cart-count absolute -top-1 -right-2 bg-gold text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+                </a>
+                
+                <!-- 4. Profile -->
+                <a href="account.html" class="hover:text-gold transition-colors" title="Account">
+                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Product Mega Menu Dropdown -->
+        <div id="product-mega-menu" class="absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gold/20 hidden opacity-0 -translate-y-4 transition-all duration-300 z-50">
+            <div class="container mx-auto px-4 py-8 grid grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-serif font-bold text-lg text-deep-maroon mb-4 border-b border-gray-100 pb-2">Collections</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-gold transition-colors">Gold Jewellery</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-gold transition-colors">Diamond Jewellery</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-gold transition-colors">Wedding Collection</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-gold transition-colors">Daily Wear</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg text-deep-maroon mb-4 border-b border-gray-100 pb-2">Categories</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-gold transition-colors">Rings</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-gold transition-colors">Earrings</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-gold transition-colors">Necklaces</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-gold transition-colors">Bracelets</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-2 relative rounded-lg overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-deep-maroon/90 to-transparent flex items-end p-6">
+                        <div>
+                            <h4 class="font-serif text-2xl text-white mb-2">Bridal Collection</h4>
+                            <a href="#" class="text-gold text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">Explore â†’</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Row Navigation â€” Icon + Label Attractive Pills -->
+        <div class="hidden lg:block bg-gradient-to-r from-champagne via-white to-champagne border-t border-gold/20">
+            <nav class="container mx-auto px-4 flex justify-center items-center gap-0.5 py-2">
+
+                <a href="index.html?category=All" class="group flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-semibold text-gray-600 hover:text-deep-maroon transition-all duration-300 tracking-wider uppercase whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-gold group-hover:text-yellow-300 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                    All Jewellery
+                </a>
+                <span class="text-gold/30 mx-0.5">|</span>
+
+                <a href="index.html?category=Gold" class="group flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-semibold text-gray-600 hover:text-deep-maroon transition-all duration-300 tracking-wider uppercase whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-gold group-hover:text-yellow-300 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path stroke-linecap="round" d="M12 8v8M9.5 10c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5c0 1.38-1.12 2.5-2.5 2.5S9.5 11.38 9.5 12.5"/></svg>
+                    Gold
+                </a>
+                <span class="text-gold/30 mx-0.5">|</span>
+
+                <a href="index.html?category=Diamond" class="group flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-semibold text-gray-600 hover:text-deep-maroon transition-all duration-300 tracking-wider uppercase whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-gold group-hover:text-yellow-300 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 3h12l4 6-10 12L2 9l4-6z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2 9h20M12 3l4 6-4 12-4-12 4-6z"/></svg>
+                    Diamond
+                </a>
+                <span class="text-gold/30 mx-0.5">|</span>
+
+                <a href="index.html?category=Earrings" class="group flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-semibold text-gray-600 hover:text-deep-maroon transition-all duration-300 tracking-wider uppercase whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-gold group-hover:text-yellow-300 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path stroke-linecap="round" d="M12 7v3"/><path stroke-linecap="round" d="M8 14c0-2.21 1.79-4 4-4s4 1.79 4 4c0 3-4 7-4 7s-4-4-4-7z"/></svg>
+                    Earrings
+                </a>
+                <span class="text-gold/30 mx-0.5">|</span>
+
+                <a href="index.html?category=Rings" class="group flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-semibold text-gray-600 hover:text-deep-maroon transition-all duration-300 tracking-wider uppercase whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-gold group-hover:text-yellow-300 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/></svg>
+                    Rings
+                </a>
+                <span class="text-gold/30 mx-0.5">|</span>
+
+                <a href="index.html?category=Necklaces" class="group flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-semibold text-gray-600 hover:text-deep-maroon transition-all duration-300 tracking-wider uppercase whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-gold group-hover:text-yellow-300 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 7a8 8 0 0016 0"/><circle cx="12" cy="19" r="2.5"/><line x1="12" y1="16.5" x2="12" y2="10" stroke-linecap="round"/></svg>
+                    Necklaces
+                </a>
+                <span class="text-gold/30 mx-0.5">|</span>
+
+                <a href="index.html?category=Bracelets" class="group flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-semibold text-gray-600 hover:text-deep-maroon transition-all duration-300 tracking-wider uppercase whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-gold group-hover:text-yellow-300 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path stroke-linecap="round" d="M7.76 7.76a6 6 0 018.48 8.48"/></svg>
+                    Bracelets
+                </a>
+                <span class="text-gold/30 mx-0.5">|</span>
+
+                <a href="index.html?category=Wedding" class="group flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-semibold text-gray-600 hover:text-deep-maroon transition-all duration-300 tracking-wider uppercase whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-gold group-hover:text-yellow-300 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="12" r="4"/><circle cx="16" cy="12" r="4"/></svg>
+                    Wedding
+                </a>
+                <span class="text-gold/30 mx-0.5">|</span>
+
+                <a href="index.html?category=Gifting" class="group flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-semibold text-gray-600 hover:text-deep-maroon transition-all duration-300 tracking-wider uppercase whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-gold group-hover:text-yellow-300 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="20" height="12" rx="1.5"/><path stroke-linecap="round" d="M12 9v12M2 13h20"/><path stroke-linecap="round" d="M12 9c0 0-3.5 0-3.5-2.5a2 2 0 014 0m0 2.5c0 0 3.5 0 3.5-2.5a2 2 0 00-4 0"/></svg>
+                    Gifting
+                </a>
+                <span class="text-gold/30 mx-0.5">|</span>
+
+                <a href="contact.html" class="group flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-bold text-[#4a1c1d] bg-amber-50 hover:bg-[#4a1c1d] hover:text-white transition-all duration-300 tracking-wider uppercase whitespace-nowrap border border-amber-200/80 shadow-2xs">
+                    <svg class="w-3.5 h-3.5 text-[#b58b4c] group-hover:text-amber-200 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Contact Us
+                </a>
+
+            </nav>
+        </div>
+    </header>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="fixed inset-0 bg-black/50 backdrop-blur-md z-50 hidden items-center justify-center p-4 transition-opacity duration-300">
+        <div id="quick-view-content" class="bg-white max-w-4xl w-full rounded-2xl shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300 overflow-hidden">
+            <!-- Content injected here -->
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Carousel -->
+        <section class="relative w-full py-8 overflow-hidden bg-champagne" id="carousel-container">
+            <div class="relative w-full mx-auto" style="max-width: 1920px;">
+                <div class="overflow-hidden" id="carousel-viewport">
+                    <div class="flex transition-transform duration-700 ease-in-out gap-4 px-4 sm:px-8" id="carousel-track" style="transform: translateX(0%);">
+
+                        <!-- Slide 1 â€” Bridal Heritage (uploaded image) -->
+                        <div class="carousel-slide flex-shrink-0 w-[90vw] md:w-[85vw] lg:w-[80vw] h-[55vh] lg:h-[80vh] relative rounded-3xl overflow-hidden shadow-2xl group">
+                            <img src="images/banner-bridal.png" alt="The Heritage Collection" class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-[1200ms]">
+                            <!-- warm blush-to-transparent overlay matching the peach tones of image -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-[#4a1c1d]/85 via-[#6b1f24]/30 to-transparent"></div>
+                            <!-- subtle top vignette -->
+                            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10"></div>
+                            <div class="absolute inset-0 flex items-center p-8 md:p-20">
+                                <div class="max-w-lg text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700">
+                                    <!-- decorative line above tag -->
+                                    <div class="flex items-center gap-3 mb-5">
+                                        <div class="h-px w-10 bg-gold/80"></div>
+                                        <span class="text-gold uppercase tracking-[0.35em] text-xs font-bold">The Heritage Collection</span>
+                                    </div>
+                                    <h1 class="text-5xl lg:text-[4.5rem] font-serif font-bold mb-5 leading-[1.1] drop-shadow-lg">Timeless Jewellery,<br><em class="not-italic text-gold/90">Crafted for Eternity</em></h1>
+                                    <p class="text-base lg:text-lg font-light text-white/85 mb-8 leading-relaxed">Discover our masterpiece collection inspired by<br class="hidden lg:block"> the grandeur of ancient palaces.</p>
+                                    <div class="flex gap-4 flex-wrap">
+                                        <button class="bg-gold text-deep-maroon px-8 py-3.5 rounded-sm text-sm font-bold uppercase tracking-wider hover:bg-white transition-all duration-300 shadow-lg hover:shadow-gold/30">Explore Collection</button>
+                                        <button class="border border-white/70 text-white px-8 py-3.5 rounded-sm text-sm font-bold uppercase tracking-wider hover:bg-white/10 transition-all duration-300">View Lookbook</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 â€” Bridal Elegance -->
+                        <div class="carousel-slide flex-shrink-0 w-[90vw] md:w-[85vw] lg:w-[80vw] h-[55vh] lg:h-[80vh] relative rounded-3xl overflow-hidden shadow-2xl group">
+                            <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?auto=format&fit=crop&w=1920&q=80" alt="Bridal Elegance" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[1200ms]">
+                            <div class="absolute inset-0 bg-gradient-to-r from-burgundy/85 via-burgundy/30 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10"></div>
+                            <div class="absolute inset-0 flex items-center p-8 md:p-20">
+                                <div class="max-w-lg text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700">
+                                    <div class="flex items-center gap-3 mb-5">
+                                        <div class="h-px w-10 bg-rose-pink/80"></div>
+                                        <span class="text-rose-pink uppercase tracking-[0.35em] text-xs font-bold">Wedding Specials</span>
+                                    </div>
+                                    <h1 class="text-5xl lg:text-[4.5rem] font-serif font-bold mb-5 leading-[1.1] drop-shadow-lg">The Bridal<br><em class="not-italic text-rose-pink/90">Elegance</em></h1>
+                                    <p class="text-base lg:text-lg font-light text-white/85 mb-8 leading-relaxed">Make your special day unforgettable<br class="hidden lg:block"> with the finest pure luxury.</p>
+                                    <div class="flex gap-4 flex-wrap">
+                                        <button class="bg-white text-deep-maroon px-8 py-3.5 rounded-sm text-sm font-bold uppercase tracking-wider hover:bg-rose-pink transition-all duration-300 shadow-lg">Shop Bridal</button>
+                                        <button class="border border-white/70 text-white px-8 py-3.5 rounded-sm text-sm font-bold uppercase tracking-wider hover:bg-white/10 transition-all duration-300">View Gallery</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 â€” Diamond Pavilion (uploaded image) -->
+                        <div class="carousel-slide flex-shrink-0 w-[90vw] md:w-[85vw] lg:w-[80vw] h-[55vh] lg:h-[80vh] relative rounded-3xl overflow-hidden shadow-2xl group">
+                            <img src="images/banner-diamond.png" alt="The Diamond Pavilion" class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-[1200ms]">
+                            <!-- deep charcoal overlay echoing the dark marble tone -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/90 via-[#1a1a1a]/40 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20"></div>
+                            <div class="absolute inset-0 flex items-center p-8 md:p-20">
+                                <div class="max-w-lg text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700">
+                                    <div class="flex items-center gap-3 mb-5">
+                                        <div class="h-px w-10 bg-gray-300/80"></div>
+                                        <span class="text-gray-300 uppercase tracking-[0.35em] text-xs font-bold">Uncompromising Brilliance</span>
+                                    </div>
+                                    <h1 class="text-5xl lg:text-[4.5rem] font-serif font-bold mb-5 leading-[1.1] drop-shadow-lg">The Diamond<br><em class="not-italic text-gray-300/90">Pavilion</em></h1>
+                                    <p class="text-base lg:text-lg font-light text-white/85 mb-8 leading-relaxed">Flawless diamonds set in the most<br class="hidden lg:block"> magnificent designs ever crafted.</p>
+                                    <div class="flex gap-4 flex-wrap">
+                                        <button class="bg-white text-black px-8 py-3.5 rounded-sm text-sm font-bold uppercase tracking-wider hover:bg-gray-200 transition-all duration-300 shadow-lg">Shop Diamonds</button>
+                                        <button class="border border-white/70 text-white px-8 py-3.5 rounded-sm text-sm font-bold uppercase tracking-wider hover:bg-white/10 transition-all duration-300">View Collection</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 â€” Everyday Luxury -->
+                        <div class="carousel-slide flex-shrink-0 w-[90vw] md:w-[85vw] lg:w-[80vw] h-[55vh] lg:h-[80vh] relative rounded-3xl overflow-hidden shadow-2xl group">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1920&q=80" alt="Everyday Luxury" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[1200ms]">
+                            <div class="absolute inset-0 bg-gradient-to-r from-dark-brown/80 via-dark-brown/30 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10"></div>
+                            <div class="absolute inset-0 flex items-center p-8 md:p-20">
+                                <div class="max-w-lg text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700">
+                                    <div class="flex items-center gap-3 mb-5">
+                                        <div class="h-px w-10 bg-gold/80"></div>
+                                        <span class="text-gold uppercase tracking-[0.35em] text-xs font-bold">Modern Classics</span>
+                                    </div>
+                                    <h1 class="text-5xl lg:text-[4.5rem] font-serif font-bold mb-5 leading-[1.1] drop-shadow-lg">Everyday<br><em class="not-italic text-gold/90">Luxury</em></h1>
+                                    <p class="text-base lg:text-lg font-light text-white/85 mb-8 leading-relaxed">Subtle statement pieces crafted<br class="hidden lg:block"> for the modern woman.</p>
+                                    <div class="flex gap-4 flex-wrap">
+                                        <button class="bg-gold text-deep-maroon px-8 py-3.5 rounded-sm text-sm font-bold uppercase tracking-wider hover:bg-white transition-all duration-300 shadow-lg">Discover</button>
+                                        <button class="border border-white/70 text-white px-8 py-3.5 rounded-sm text-sm font-bold uppercase tracking-wider hover:bg-white/10 transition-all duration-300">New Arrivals</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <!-- Carousel Dots -->
+                <div id="carousel-dots" class="flex justify-center gap-4 mt-8 pb-4"></div>
+            </div>
+        </section>
+
+
+        <!-- Shop By Category Section -->
+        <section class="pt-10 md:pt-14 bg-white">
+
+            <!-- Categories Carousel -->
+            <div class="container mx-auto px-4 mb-4 md:mb-6 md:mb-6 md:mb-8 relative">
+                <!-- Flex container with overflow-x-auto for horizontal scrolling. Scrollbar fully hidden for clean look -->
+                <div class="flex overflow-x-auto gap-5 md:gap-8 pb-8 snap-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    
+                    <a href="#" class="snap-start shrink-0 w-[120px] md:w-[150px] group text-center block">
+                        <div class="w-full aspect-square overflow-hidden mb-5 bg-gray-50 rounded-2xl shadow-sm group-hover:shadow-xl border border-transparent group-hover:border-gold/30 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1599643478514-4a410f031266?auto=format&fit=crop&w=400&q=80" alt="Jewellery Sets" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                        </div>
+                        <span class="relative inline-block font-serif text-[14px] md:text-[15px] text-gray-800 group-hover:text-gold transition-colors font-semibold tracking-wide">
+                            Jewellery Sets
+                            <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-gold transition-all duration-500 group-hover:w-full"></span>
+                        </span>
+                    </a>
+                    
+                    <a href="#" class="snap-start shrink-0 w-[120px] md:w-[150px] group text-center block">
+                        <div class="w-full aspect-square overflow-hidden mb-5 bg-gray-50 rounded-2xl shadow-sm group-hover:shadow-xl border border-transparent group-hover:border-gold/30 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=400&q=80" alt="Earrings" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                        </div>
+                        <span class="relative inline-block font-serif text-[14px] md:text-[15px] text-gray-800 group-hover:text-gold transition-colors font-semibold tracking-wide">
+                            Earrings
+                            <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-gold transition-all duration-500 group-hover:w-full"></span>
+                        </span>
+                    </a>
+                    
+                    <a href="#" class="snap-start shrink-0 w-[120px] md:w-[150px] group text-center block">
+                        <div class="w-full aspect-square overflow-hidden mb-5 bg-gray-50 rounded-2xl shadow-sm group-hover:shadow-xl border border-transparent group-hover:border-gold/30 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=400&q=80" alt="Rings" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                        </div>
+                        <span class="relative inline-block font-serif text-[14px] md:text-[15px] text-gray-800 group-hover:text-gold transition-colors font-semibold tracking-wide">
+                            Rings
+                            <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-gold transition-all duration-500 group-hover:w-full"></span>
+                        </span>
+                    </a>
+                    
+                    <a href="#" class="snap-start shrink-0 w-[120px] md:w-[150px] group text-center block">
+                        <div class="w-full aspect-square overflow-hidden mb-5 bg-gray-50 rounded-2xl shadow-sm group-hover:shadow-xl border border-transparent group-hover:border-gold/30 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=400&q=80" alt="Bangles & Bracelet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                        </div>
+                        <span class="relative inline-block font-serif text-[14px] md:text-[15px] text-gray-800 group-hover:text-gold transition-colors font-semibold tracking-wide">
+                            Bangles & Bracelet
+                            <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-gold transition-all duration-500 group-hover:w-full"></span>
+                        </span>
+                    </a>
+                    
+                    <a href="#" class="snap-start shrink-0 w-[120px] md:w-[150px] group text-center block">
+                        <div class="w-full aspect-square overflow-hidden mb-5 bg-gray-50 rounded-2xl shadow-sm group-hover:shadow-xl border border-transparent group-hover:border-gold/30 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=400&q=80" alt="Pendants" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                        </div>
+                        <span class="relative inline-block font-serif text-[14px] md:text-[15px] text-gray-800 group-hover:text-gold transition-colors font-semibold tracking-wide">
+                            Pendants
+                            <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-gold transition-all duration-500 group-hover:w-full"></span>
+                        </span>
+                    </a>
+                    
+                    <a href="#" class="snap-start shrink-0 w-[120px] md:w-[150px] group text-center block">
+                        <div class="w-full aspect-square overflow-hidden mb-5 bg-gray-50 rounded-2xl shadow-sm group-hover:shadow-xl border border-transparent group-hover:border-gold/30 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?auto=format&fit=crop&w=400&q=80" alt="Mangalsutra" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                        </div>
+                        <span class="relative inline-block font-serif text-[14px] md:text-[15px] text-gray-800 group-hover:text-gold transition-colors font-semibold tracking-wide">
+                            Mangalsutra
+                            <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-gold transition-all duration-500 group-hover:w-full"></span>
+                        </span>
+                    </a>
+                    
+                    <a href="#" class="snap-start shrink-0 w-[120px] md:w-[150px] group text-center block">
+                        <div class="w-full aspect-square overflow-hidden mb-5 bg-gray-50 rounded-2xl shadow-sm group-hover:shadow-xl border border-transparent group-hover:border-gold/30 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?auto=format&fit=crop&w=400&q=80" alt="Silver Jewellery" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                        </div>
+                        <span class="relative inline-block font-serif text-[14px] md:text-[15px] text-gray-800 group-hover:text-gold transition-colors font-semibold tracking-wide">
+                            Silver Jewellery
+                            <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-gold transition-all duration-500 group-hover:w-full"></span>
+                        </span>
+                    </a>
+                    
+                    <a href="#" class="snap-start shrink-0 w-[120px] md:w-[150px] group text-center block">
+                        <div class="w-full aspect-square overflow-hidden mb-5 bg-gray-50 rounded-2xl shadow-sm group-hover:shadow-xl border border-transparent group-hover:border-gold/30 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80" alt="Lab Grown Diamonds" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+                        </div>
+                        <span class="relative inline-block font-serif text-[14px] md:text-[15px] text-gray-800 group-hover:text-gold transition-colors font-semibold tracking-wide">
+                            Lab Grown Diamonds
+                            <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-gold transition-all duration-500 group-hover:w-full"></span>
+                        </span>
+                    </a>
+                    
+                </div>
+            </div>
+            </div>
+            </div>
+        </section>
+        
+        <!-- Category Section -->
+        <section class="py-4 md:py-6 bg-white"><div class="container mx-auto px-4 max-w-7xl"><!-- Section heading -->
+                <div class="text-center mb-4 md:mb-6">
+                    <h2 class="text-3xl md:text-4xl font-serif text-deep-maroon font-normal mb-2">Rajwada Collections</h2>
+                    <p class="text-gray-500 font-light text-sm md:text-base">Explore our newly launched collection</p>
+                </div>
+                
+                <!-- Bento Grid Layout -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 h-auto md:h-[550px]">
+                    <!-- Left Large Image (Bridal) -->
+                    <a href="#" class="group block w-full relative overflow-hidden rounded-2xl h-[350px] md:h-full shadow-md hover:shadow-2xl transition-all duration-700 border border-transparent hover:border-gold/30">
+                        <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?auto=format&fit=crop&w=800&q=80" alt="Bridal Jewellery" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-maroon/90 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-700"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                            <div class="w-6 md:w-10 h-[2px] bg-gold mb-3 transform origin-left scale-x-50 group-hover:scale-x-100 transition-transform duration-700"></div>
+                            <h3 class="text-sm md:text-base font-sans uppercase tracking-[0.2em] text-white font-semibold drop-shadow-md">Bridal Jewellery</h3>
+                            <div class="overflow-hidden mt-2">
+                                <p class="text-gold text-xs tracking-widest uppercase font-medium opacity-0 transform translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-out delay-75">Discover &rarr;</p>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- Right Column -->
+                    <div class="flex flex-col gap-4 md:gap-6 h-full">
+                        <!-- Top Right (Royal) -->
+                        <a href="#" class="group block w-full relative overflow-hidden rounded-2xl h-[250px] md:h-auto md:flex-1 shadow-md hover:shadow-2xl transition-all duration-700 border border-transparent hover:border-gold/30">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80" alt="Royal Collection" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-deep-maroon/90 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-700"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-5 md:p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                                <div class="w-6 md:w-8 h-[2px] bg-gold mb-2 transform origin-left scale-x-50 group-hover:scale-x-100 transition-transform duration-700"></div>
+                                <h3 class="text-xs md:text-sm font-sans uppercase tracking-[0.2em] text-white font-semibold drop-shadow-md">Royal Collection</h3>
+                                <div class="overflow-hidden mt-2">
+                                    <p class="text-gold text-[10px] md:text-xs tracking-widest uppercase font-medium opacity-0 transform translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-out delay-75">Discover &rarr;</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- Bottom Right (Split into two) -->
+                        <div class="grid grid-cols-2 gap-4 md:gap-6 h-[200px] md:h-auto md:flex-1">
+                            <a href="#" class="group block w-full relative overflow-hidden rounded-2xl h-full shadow-md hover:shadow-2xl transition-all duration-700 border border-transparent hover:border-gold/30">
+                                <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=400&q=80" alt="Gold Heritage" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-deep-maroon/90 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-700"></div>
+                                <div class="absolute bottom-0 left-0 w-full p-4 md:p-5 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                                    <div class="w-4 md:w-6 h-[2px] bg-gold mb-2 transform origin-left scale-x-50 group-hover:scale-x-100 transition-transform duration-700"></div>
+                                    <h3 class="text-[10px] md:text-xs font-sans uppercase tracking-[0.2em] text-white font-semibold drop-shadow-md leading-tight">Gold Heritage</h3>
+                                    <div class="overflow-hidden mt-1.5 md:mt-2">
+                                        <p class="text-gold text-[9px] md:text-[10px] tracking-widest uppercase font-medium opacity-0 transform translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-out delay-75">View &rarr;</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="group block w-full relative overflow-hidden rounded-2xl h-full shadow-md hover:shadow-2xl transition-all duration-700 border border-transparent hover:border-gold/30">
+                                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80" alt="Engagement Rings" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-deep-maroon/90 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-700"></div>
+                                <div class="absolute bottom-0 left-0 w-full p-4 md:p-5 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                                    <div class="w-4 md:w-6 h-[2px] bg-gold mb-2 transform origin-left scale-x-50 group-hover:scale-x-100 transition-transform duration-700"></div>
+                                    <h3 class="text-[10px] md:text-xs font-sans uppercase tracking-[0.2em] text-white font-semibold drop-shadow-md leading-tight">Engagement Rings</h3>
+                                    <div class="overflow-hidden mt-1.5 md:mt-2">
+                                        <p class="text-gold text-[9px] md:text-[10px] tracking-widest uppercase font-medium opacity-0 transform translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-out delay-75">View &rarr;</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Section -->
+        <section id="products-section" class="py-12 md:py-16 bg-white scroll-mt-24">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-6 md:mb-8">
+                    <div class="flex items-center justify-center gap-4 mb-4">
+                        <div class="w-12 md:w-24 h-[1px] bg-gradient-to-r from-transparent to-gold/70"></div>
+                        <span class="text-gold uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold whitespace-nowrap">Curated Selection</span>
+                        <div class="w-12 md:w-24 h-[1px] bg-gradient-to-l from-transparent to-gold/70"></div>
+                    </div>
+                    
+                    <!-- Royal Font Header -->
+                    <h2 id="products-heading" class="text-3xl md:text-4xl lg:text-5xl font-serif text-[#1e293b] uppercase tracking-[0.2em] mt-4 mb-6 leading-tight drop-shadow-sm">
+                        Discover Our<br class="md:hidden"> Category
+                    </h2>
+                    
+                    <!-- Ornate bottom divider -->
+                    <div class="flex justify-center items-center opacity-80">
+                        <div class="w-1.5 h-1.5 transform rotate-45 bg-gold"></div>
+                        <div class="w-20 h-[1px] bg-gold/50 mx-2"></div>
+                        <div class="w-1.5 h-1.5 transform rotate-45 bg-gold"></div>
+                    </div>
+                </div>
+
+                <!-- Royal Filtering Buttons -->
+                <div class="flex flex-wrap justify-center gap-3 md:gap-5 mb-6 md:mb-8">
+                    <button class="filter-btn bg-[#1e293b] text-white px-7 py-2.5 text-[11px] font-semibold tracking-widest uppercase border border-[#1e293b] transition-all hover:bg-gold hover:border-gold hover:shadow-lg" data-category="All">All</button>
+                    <button class="filter-btn bg-transparent text-gray-500 border border-gray-300 px-7 py-2.5 text-[11px] font-semibold tracking-widest uppercase transition-all hover:border-gold hover:text-gold hover:shadow-md" data-category="Gold">Gold</button>
+                    <button class="filter-btn bg-transparent text-gray-500 border border-gray-300 px-7 py-2.5 text-[11px] font-semibold tracking-widest uppercase transition-all hover:border-gold hover:text-gold hover:shadow-md" data-category="Diamond">Diamond</button>
+                    <button class="filter-btn bg-transparent text-gray-500 border border-gray-300 px-7 py-2.5 text-[11px] font-semibold tracking-widest uppercase transition-all hover:border-gold hover:text-gold hover:shadow-md" data-category="Wedding">Wedding</button>
+                    <button class="filter-btn bg-transparent text-gray-500 border border-gray-300 px-7 py-2.5 text-[11px] font-semibold tracking-widest uppercase transition-all hover:border-gold hover:text-gold hover:shadow-md" data-category="Earrings">Earrings</button>
+                    <button class="filter-btn bg-transparent text-gray-500 border border-gray-300 px-7 py-2.5 text-[11px] font-semibold tracking-widest uppercase transition-all hover:border-gold hover:text-gold hover:shadow-md" data-category="Rings">Rings</button>
+                    <button class="filter-btn bg-transparent text-gray-500 border border-gray-300 px-7 py-2.5 text-[11px] font-semibold tracking-widest uppercase transition-all hover:border-gold hover:text-gold hover:shadow-md" data-category="Necklaces">Necklaces</button>
+                    <button class="filter-btn bg-transparent text-gray-500 border border-gray-300 px-7 py-2.5 text-[11px] font-semibold tracking-widest uppercase transition-all hover:border-gold hover:text-gold hover:shadow-md" data-category="Bracelets">Bracelets</button>
+                </div>                
+                <!-- Product Grid (Populated via JS) -->
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Products injected here -->
+                </div>
+            </div>
+        </section>
+            <!-- Customize Jewellery Section -->
+        <section class="py-8 md:py-10 bg-white">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <!-- Header -->
+                <div class="text-center mb-8 md:mb-12 group cursor-default">
+                    <div class="flex items-center justify-center gap-4 mb-4">
+                        <div class="w-16 md:w-24 h-[1px] bg-gradient-to-r from-transparent to-gold/70"></div>
+                        <svg class="w-6 h-6 text-gold group-hover:scale-110 transition-transform duration-500 drop-shadow-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.5 10.5l8.5 11 8.5-11-4.5-5.5h-8l-4.5 5.5z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.5 10.5h17" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 5l4.5 5.5 4.5-5.5M7.5 5l-4 5.5M16.5 5l4 5.5M12 10.5v11M8 10.5l4 11 4-11" />
+                        </svg>
+                        <div class="w-16 md:w-24 h-[1px] bg-gradient-to-l from-transparent to-gold/70"></div>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-serif text-[#1e293b] uppercase tracking-widest mb-3">Customize Jewellery At Our Store</h2>
+                    <p class="text-gray-500 font-light text-sm md:text-base tracking-wide">Get in touch with us for a complete jewellery shopping experience!</p>
+                </div>
+
+                <!-- Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Locate Store Card -->
+                    <div class="relative w-full h-[300px] md:h-[320px] rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-500 bg-[#fdf2ec] flex items-center group">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Map Background" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-20 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#ffe4d6]/80 to-transparent"></div>
+                        <div class="relative z-10 px-8 md:px-10">
+                            <p class="text-[#842a41] text-[11px] md:text-xs tracking-[0.15em] font-semibold mb-2 italic">8 countries, 200+ showrooms</p>
+                            <h3 class="text-[#842a41] font-light text-2xl mb-5 leading-snug">Every location tells a<br><span class="font-serif italic text-4xl leading-tight">Story of joy</span></h3>
+                            <a href="contact.html" class="inline-block bg-[#842a41] hover:bg-[#5e192b] text-white text-[10px] md:text-xs tracking-widest uppercase font-bold py-2.5 px-6 rounded shadow-md transition-colors">Locate Store</a>
+                        </div>
+                    </div>
+
+                    <!-- Piercing Card -->
+                    <div class="relative w-full h-[300px] md:h-[320px] rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-500 bg-[#fef5ef] group">
+                        <!-- Background setup -->
+                        <div class="absolute inset-0 flex">
+                            <div class="w-[55%] h-full relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=600&q=80" alt="Get Pierced" class="absolute inset-0 w-full h-full object-cover object-[70%_30%] group-hover:scale-105 transition-transform duration-700">
+                            </div>
+                            <div class="w-[45%] h-full bg-gradient-to-br from-[#f8dfc7] to-[#facfb4] relative overflow-hidden flex items-center">
+                                <!-- Subtle floral pattern overlay -->
+                                <img src="https://images.unsplash.com/photo-1518893494013-481c1d8ed3fd?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-10 mix-blend-multiply">
+                            </div>
+                        </div>
+                        
+                        <div class="relative z-10 h-full flex flex-col justify-center items-end text-right px-6 md:px-10">
+                            <div class="flex flex-col items-center">
+                                <h3 class="text-[#593922] font-light text-xl mb-0 italic mr-auto ml-4">Get</h3>
+                                <h2 class="font-serif text-[42px] md:text-[50px] leading-none text-[#593922] mb-1">pierced</h2>
+                                <h3 class="text-[#593922] font-light text-lg italic mb-5 ml-auto mr-4">with us</h3>
+                                <button onclick="openAppointmentModal('Piercing & Customization')" class="bg-[#ba593e] hover:bg-[#914028] text-white text-[10px] md:text-xs tracking-widest uppercase font-bold py-2.5 px-6 rounded shadow-md transition-colors">Book An Appointment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                    <!-- Quality Badges Section -->
+        <section class="py-6 md:py-8 bg-white relative overflow-hidden">
+
+            <div class="container mx-auto px-4 max-w-6xl relative z-10">
+                <!-- Royal header -->
+                <div class="text-center mb-6">
+                    <div class="flex items-center justify-center gap-5 mb-3">
+                        <div class="w-16 h-[1px] bg-gradient-to-r from-transparent to-gold/60"></div>
+                        <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>
+                        <div class="w-16 h-[1px] bg-gradient-to-l from-transparent to-gold/60"></div>
+                    </div>
+                    <h3 class="text-gold uppercase tracking-[0.4em] text-xs font-semibold">The Rajwada Promise</h3>
+                </div>
+
+                <!-- Badges Row -->
+                <div class="flex flex-nowrap justify-between items-center">
+
+                    <!-- Badge 1 -->
+                    <div class="group cursor-default flex flex-col items-center">
+                        <div class="relative w-[150px] h-[150px] md:w-[170px] md:h-[170px] flex-shrink-0">
+                            <!-- Outer ornate ring -->
+                            <svg viewBox="0 0 140 140" class="absolute inset-0 w-full h-full" fill="none">
+                                <defs>
+                                    <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#c9a84c"/>
+                                        <stop offset="50%" style="stop-color:#f5e07a"/>
+                                        <stop offset="100%" style="stop-color:#c9a84c"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- Outer decorative circle -->
+                                <circle cx="70" cy="70" r="64" stroke="url(#goldGrad1)" stroke-width="1" fill="none" stroke-dasharray="4 3" opacity="0.6"/>
+                                <!-- Main circle -->
+                                <circle cx="70" cy="70" r="54" stroke="url(#goldGrad1)" stroke-width="1.5" fill="rgba(255,255,255,0.95)"/>
+                                <!-- Inner decorative ring -->
+                                <circle cx="70" cy="70" r="48" stroke="url(#goldGrad1)" stroke-width="0.5" fill="none" opacity="0.4"/>
+                                <!-- 4 ornate corner diamonds -->
+                                <rect x="68" y="13" width="4" height="4" transform="rotate(45 70 15)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="68" y="121" width="4" height="4" transform="rotate(45 70 123)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="13" y="68" width="4" height="4" transform="rotate(45 15 70)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="121" y="68" width="4" height="4" transform="rotate(45 123 70)" fill="#c9a84c" opacity="0.8"/>
+                            </svg>
+                            <!-- Icon + Text -->
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <svg class="w-9 h-9 text-gold group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 36 36" stroke-width="1">
+                                    <path stroke-linecap="round" d="M6 30V16L13 7L18 11L23 7L30 16V30Z"/>
+                                    <path stroke-linecap="round" d="M13 30V22L18 20L23 22V30"/>
+                                    <path stroke-linecap="round" d="M15 16V13 M18 15V12 M21 16V13"/>
+                                    <path stroke-linecap="round" d="M4 30H32"/>
+                                </svg>
+                                <p class="text-[#3f4b5b] text-[8px] tracking-[0.15em] uppercase mt-2 font-light">Designed In</p>
+                                <p class="text-gold text-[10px] tracking-[0.2em] uppercase font-bold">Jaipur</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Badge 2 -->
+                    <div class="group cursor-default flex flex-col items-center">
+                        <div class="relative w-[150px] h-[150px] md:w-[170px] md:h-[170px] flex-shrink-0">
+                            <svg viewBox="0 0 140 140" class="absolute inset-0 w-full h-full" fill="none">
+                                <circle cx="70" cy="70" r="64" stroke="url(#goldGrad1)" stroke-width="1" fill="none" stroke-dasharray="4 3" opacity="0.6"/>
+                                <circle cx="70" cy="70" r="54" stroke="url(#goldGrad1)" stroke-width="1.5" fill="rgba(255,255,255,0.95)"/>
+                                <circle cx="70" cy="70" r="48" stroke="url(#goldGrad1)" stroke-width="0.5" fill="none" opacity="0.4"/>
+                                <rect x="68" y="13" width="4" height="4" transform="rotate(45 70 15)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="68" y="121" width="4" height="4" transform="rotate(45 70 123)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="13" y="68" width="4" height="4" transform="rotate(45 15 70)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="121" y="68" width="4" height="4" transform="rotate(45 123 70)" fill="#c9a84c" opacity="0.8"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <svg class="w-9 h-9 text-gold group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 36 36" stroke-width="1">
+                                    <path stroke-linecap="round" d="M9 22C9 18,13 15,17 17L17 10C17 8,20 8,20 10L20 18 M20 16C20 14,23 14,23 16L23 18 M23 17C23 15,26 15,26 17L26 21C28 19,31 21,29 25L25 31L13 31L9 26Z"/>
+                                    <path stroke-linecap="round" d="M9 10C11 6,17 6,19 10"/>
+                                </svg>
+                                <p class="text-[#3f4b5b] text-[8px] tracking-[0.15em] uppercase mt-2 font-light">Handcrafted</p>
+                                <p class="text-gold text-[10px] tracking-[0.2em] uppercase font-bold">Jewellery</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Badge 3 -->
+                    <div class="group cursor-default flex flex-col items-center">
+                        <div class="relative w-[150px] h-[150px] md:w-[170px] md:h-[170px] flex-shrink-0">
+                            <svg viewBox="0 0 140 140" class="absolute inset-0 w-full h-full" fill="none">
+                                <circle cx="70" cy="70" r="64" stroke="url(#goldGrad1)" stroke-width="1" fill="none" stroke-dasharray="4 3" opacity="0.6"/>
+                                <circle cx="70" cy="70" r="54" stroke="url(#goldGrad1)" stroke-width="1.5" fill="rgba(255,255,255,0.95)"/>
+                                <circle cx="70" cy="70" r="48" stroke="url(#goldGrad1)" stroke-width="0.5" fill="none" opacity="0.4"/>
+                                <rect x="68" y="13" width="4" height="4" transform="rotate(45 70 15)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="68" y="121" width="4" height="4" transform="rotate(45 70 123)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="13" y="68" width="4" height="4" transform="rotate(45 15 70)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="121" y="68" width="4" height="4" transform="rotate(45 123 70)" fill="#c9a84c" opacity="0.8"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <svg class="w-9 h-9 text-gold group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 36 36" stroke-width="1">
+                                    <path stroke-linecap="round" d="M7 11V7a11 11 0 0122 0v4m-24 0h26a1 1 0 011 1v14a1 1 0 01-1 1H7a1 1 0 01-1-1V12a1 1 0 011-1z"/>
+                                    <path stroke-linecap="round" d="M18 19v4"/>
+                                    <circle cx="18" cy="18" r="2" fill="currentColor" stroke="none"/>
+                                </svg>
+                                <p class="text-[#3f4b5b] text-[8px] tracking-[0.15em] uppercase mt-2 font-light">Skin Safe</p>
+                                <p class="text-gold text-[10px] tracking-[0.2em] uppercase font-bold">Jewellery</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Badge 4 -->
+                    <div class="group cursor-default flex flex-col items-center">
+                        <div class="relative w-[150px] h-[150px] md:w-[170px] md:h-[170px] flex-shrink-0">
+                            <svg viewBox="0 0 140 140" class="absolute inset-0 w-full h-full" fill="none">
+                                <circle cx="70" cy="70" r="64" stroke="url(#goldGrad1)" stroke-width="1" fill="none" stroke-dasharray="4 3" opacity="0.6"/>
+                                <circle cx="70" cy="70" r="54" stroke="url(#goldGrad1)" stroke-width="1.5" fill="rgba(255,255,255,0.95)"/>
+                                <circle cx="70" cy="70" r="48" stroke="url(#goldGrad1)" stroke-width="0.5" fill="none" opacity="0.4"/>
+                                <rect x="68" y="13" width="4" height="4" transform="rotate(45 70 15)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="68" y="121" width="4" height="4" transform="rotate(45 70 123)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="13" y="68" width="4" height="4" transform="rotate(45 15 70)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="121" y="68" width="4" height="4" transform="rotate(45 123 70)" fill="#c9a84c" opacity="0.8"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <svg class="w-9 h-9 text-gold group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 36 36" stroke-width="1">
+                                    <path stroke-linecap="round" d="M5 18C12 5,28 7,28 18C28 7,14 5,5 18Z"/>
+                                    <path stroke-linecap="round" d="M5 18L18 24"/>
+                                    <path stroke-linecap="round" d="M18 24L26 12"/>
+                                    <path stroke-linecap="round" d="M18 24L18 32"/>
+                                    <path stroke-linecap="round" d="M14 32L22 32"/>
+                                </svg>
+                                <p class="text-[#3f4b5b] text-[8px] tracking-[0.15em] uppercase mt-2 font-light">Light Weight</p>
+                                <p class="text-gold text-[10px] tracking-[0.2em] uppercase font-bold">Material</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Badge 5 -->
+                    <div class="group cursor-default flex flex-col items-center">
+                        <div class="relative w-[150px] h-[150px] md:w-[170px] md:h-[170px] flex-shrink-0">
+                            <svg viewBox="0 0 140 140" class="absolute inset-0 w-full h-full" fill="none">
+                                <circle cx="70" cy="70" r="64" stroke="url(#goldGrad1)" stroke-width="1" fill="none" stroke-dasharray="4 3" opacity="0.6"/>
+                                <circle cx="70" cy="70" r="54" stroke="url(#goldGrad1)" stroke-width="1.5" fill="rgba(255,255,255,0.95)"/>
+                                <circle cx="70" cy="70" r="48" stroke="url(#goldGrad1)" stroke-width="0.5" fill="none" opacity="0.4"/>
+                                <rect x="68" y="13" width="4" height="4" transform="rotate(45 70 15)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="68" y="121" width="4" height="4" transform="rotate(45 70 123)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="13" y="68" width="4" height="4" transform="rotate(45 15 70)" fill="#c9a84c" opacity="0.8"/>
+                                <rect x="121" y="68" width="4" height="4" transform="rotate(45 123 70)" fill="#c9a84c" opacity="0.8"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <svg class="w-9 h-9 text-gold group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 36 36" stroke-width="1">
+                                    <path stroke-linecap="round" d="M10 20C12 14,24 14,26 20"/>
+                                    <circle cx="18" cy="26" r="3"/>
+                                    <path stroke-linecap="round" d="M10 20L15 23 M26 20L21 23"/>
+                                    <path stroke-linecap="round" d="M15 10C17 8,19 8,21 10"/>
+                                    <circle cx="15" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+                                    <circle cx="21" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+                                    <path stroke-linecap="round" d="M23 8L27 6 M25 10L30 10 M24 12L28 14"/>
+                                </svg>
+                                <p class="text-[#3f4b5b] text-[8px] tracking-[0.15em] uppercase mt-2 font-light">Exclusive Designer</p>
+                                <p class="text-gold text-[10px] tracking-[0.2em] uppercase font-bold">Collection</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+<!-- Creative Modern Customer Reviews Section -->
+        <section class="py-12 md:py-16 bg-gradient-to-b from-[#FFFDF9] via-[#FEFBF8] to-[#FFFDF9] relative overflow-hidden">
+            <!-- Decorative Subtle Arch Overlay -->
+            <div class="absolute inset-0 bg-[radial-gradient(#b58b4c_0.75px,transparent_0.75px)] [background-size:24px_24px] opacity-[0.06] pointer-events-none"></div>
+
+            <div class="container mx-auto px-4 max-w-7xl relative z-10">
+                <!-- Section Header with Stats Bar -->
+                <div class="text-center mb-10">
+                    <div class="flex items-center justify-center gap-4 mb-3">
+                        <div class="w-16 md:w-28 h-[1px] bg-gradient-to-r from-transparent to-[#b58b4c]"></div>
+                        <span class="text-[#b58b4c] text-xs tracking-[0.3em] uppercase font-bold whitespace-nowrap">Authentic Royal Experiences</span>
+                        <div class="w-16 md:w-28 h-[1px] bg-gradient-to-l from-transparent to-[#b58b4c]"></div>
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif text-[#4a1c1d] uppercase tracking-wider mb-4 font-bold">What Our Patrons Say</h2>
+                    
+                    <!-- Rating Stats Summary Banner -->
+                    <div class="inline-flex flex-wrap items-center justify-center gap-4 md:gap-8 bg-white px-6 py-3 rounded-full shadow-md border border-amber-100 text-xs md:text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl font-bold text-[#4a1c1d] font-serif">4.9</span>
+                            <div class="flex text-amber-400">
+                                ★★★★★
+                            </div>
+                            <span class="text-gray-500 text-xs font-semibold">(1,480+ Reviews)</span>
+                        </div>
+                        <span class="hidden sm:inline text-amber-200">|</span>
+                        <div class="flex items-center gap-1.5 text-emerald-700 font-bold">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>99.4% Recommendation Rate</span>
+                        </div>
+                        <span class="hidden sm:inline text-amber-200">|</span>
+                        <button onclick="openWriteReviewModal()" class="bg-[#4a1c1d] hover:bg-[#b58b4c] text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center gap-1.5">
+                            <span>👑 Write a Review</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reviews Carousel Wrapper -->
+                <div class="relative">
+                    <!-- Prev Button -->
+                    <button id="review-prev" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 -translate-x-3 md:-translate-x-5 w-11 h-11 rounded-full bg-white border border-amber-200/80 shadow-lg flex items-center justify-center text-[#4a1c1d] hover:bg-[#4a1c1d] hover:text-white transition-all duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    
+                    <!-- Next Button -->
+                    <button id="review-next" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 translate-x-3 md:translate-x-5 w-11 h-11 rounded-full bg-white border border-amber-200/80 shadow-lg flex items-center justify-center text-[#4a1c1d] hover:bg-[#4a1c1d] hover:text-white transition-all duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+
+                    <!-- Cards Track -->
+                    <div id="review-track" class="overflow-hidden py-4">
+                        <div id="review-cards" class="flex gap-6 transition-transform duration-500 ease-in-out">
+
+                            <!-- Review 1: Dipa Paul -->
+                            <div class="flex-shrink-0 w-[300px] md:w-[350px] bg-white rounded-2xl shadow-sm border border-amber-100/80 p-6 hover:shadow-2xl hover:border-[#b58b4c] transition-all duration-500 flex flex-col justify-between relative group">
+                                <span class="absolute top-4 right-6 text-6xl font-serif text-amber-100 font-bold select-none pointer-events-none group-hover:text-amber-200 transition-colors">“</span>
+                                
+                                <div>
+                                    <!-- Verified Purchase Badge Bar -->
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold">
+                                            ✓ Verified Buyer • Jaipur Palace
+                                        </span>
+                                        <div class="flex text-amber-400 text-sm">★★★★★</div>
+                                    </div>
+
+                                    <h4 class="font-serif text-lg text-[#4a1c1d] font-bold mb-2 leading-snug">"Exquisite Royal Heritage Quality!"</h4>
+                                    <p class="text-gray-600 text-xs leading-relaxed mb-6 font-light">"Very Beautiful Choker Necklace. The 22K Gold finish and Kundan detailing are breathtaking. It arrived in a velvet royal box with BIS Hallmark certificates."</p>
+                                </div>
+
+                                <!-- Customer Profile & Purchased Product Footer -->
+                                <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full border-2 border-[#b58b4c] p-0.5 overflow-hidden shrink-0 shadow-sm">
+                                            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=200&q=80" alt="Dipa Paul" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <div>
+                                            <h5 class="font-serif font-bold text-sm text-gray-900">Dipa Paul</h5>
+                                            <p class="text-[10px] text-[#b58b4c] font-semibold">Jaipur, Rajasthan</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Purchased Item Thumbnail -->
+                                    <div class="w-11 h-11 rounded-lg border border-gray-200 overflow-hidden shrink-0 bg-gray-50 shadow-inner" title="Purchased: Royal Diamond Choker">
+                                        <img src="https://images.unsplash.com/photo-1599643478524-fb66f70a00ef?auto=format&fit=crop&w=150&q=80" alt="Choker" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Review 2: Akanksha Yadav -->
+                            <div class="flex-shrink-0 w-[300px] md:w-[350px] bg-white rounded-2xl shadow-sm border border-amber-100/80 p-6 hover:shadow-2xl hover:border-[#b58b4c] transition-all duration-500 flex flex-col justify-between relative group">
+                                <span class="absolute top-4 right-6 text-6xl font-serif text-amber-100 font-bold select-none pointer-events-none group-hover:text-amber-200 transition-colors">“</span>
+                                
+                                <div>
+                                    <!-- Verified Purchase Badge Bar -->
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold">
+                                            ✓ Verified Buyer • Mumbai Lounge
+                                        </span>
+                                        <div class="flex text-amber-400 text-sm">★★★★★</div>
+                                    </div>
+
+                                    <h4 class="font-serif text-lg text-[#4a1c1d] font-bold mb-2 leading-snug">"Perfect Size & Daily Luxury!"</h4>
+                                    <p class="text-gray-600 text-xs leading-relaxed mb-6 font-light">"These diamond studs are so pretty and lightweight for everyday wear. The solitaire clarity VVS1 is sparkling bright. I loved the VIP lounge hospitality in Bandra!"</p>
+                                </div>
+
+                                <!-- Customer Profile & Purchased Product Footer -->
+                                <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full border-2 border-[#b58b4c] p-0.5 overflow-hidden shrink-0 shadow-sm">
+                                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=200&q=80" alt="Akanksha Yadav" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <div>
+                                            <h5 class="font-serif font-bold text-sm text-gray-900">Akanksha Yadav</h5>
+                                            <p class="text-[10px] text-[#b58b4c] font-semibold">Mumbai, Maharashtra</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Purchased Item Thumbnail -->
+                                    <div class="w-11 h-11 rounded-lg border border-gray-200 overflow-hidden shrink-0 bg-gray-50 shadow-inner" title="Purchased: Diamond Stud Earrings">
+                                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=150&q=80" alt="Earrings" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Review 3: Oindrila Saha -->
+                            <div class="flex-shrink-0 w-[300px] md:w-[350px] bg-white rounded-2xl shadow-sm border border-amber-100/80 p-6 hover:shadow-2xl hover:border-[#b58b4c] transition-all duration-500 flex flex-col justify-between relative group">
+                                <span class="absolute top-4 right-6 text-6xl font-serif text-amber-100 font-bold select-none pointer-events-none group-hover:text-amber-200 transition-colors">“</span>
+                                
+                                <div>
+                                    <!-- Verified Purchase Badge Bar -->
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold">
+                                            ✓ Verified Buyer • Delhi Mansion
+                                        </span>
+                                        <div class="flex text-amber-400 text-sm">★★★★★</div>
+                                    </div>
+
+                                    <h4 class="font-serif text-lg text-[#4a1c1d] font-bold mb-2 leading-snug">"Unmatched Antique Craftsmanship!"</h4>
+                                    <p class="text-gray-600 text-xs leading-relaxed mb-6 font-light">"I paired this Rajasthani Jhumka with my silk saree and it complemented my bridal look perfectly. Very unique design, light weighted, and 100% hallmarked."</p>
+                                </div>
+
+                                <!-- Customer Profile & Purchased Product Footer -->
+                                <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full border-2 border-[#b58b4c] p-0.5 overflow-hidden shrink-0 shadow-sm">
+                                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Oindrila Saha" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <div>
+                                            <h5 class="font-serif font-bold text-sm text-gray-900">Oindrila Saha</h5>
+                                            <p class="text-[10px] text-[#b58b4c] font-semibold">New Delhi</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Purchased Item Thumbnail -->
+                                    <div class="w-11 h-11 rounded-lg border border-gray-200 overflow-hidden shrink-0 bg-gray-50 shadow-inner" title="Purchased: Antique Kundan Jhumka">
+                                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=150&q=80" alt="Jhumka" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Review 4: Priya Sharma -->
+                            <div class="flex-shrink-0 w-[300px] md:w-[350px] bg-white rounded-2xl shadow-sm border border-amber-100/80 p-6 hover:shadow-2xl hover:border-[#b58b4c] transition-all duration-500 flex flex-col justify-between relative group">
+                                <span class="absolute top-4 right-6 text-6xl font-serif text-amber-100 font-bold select-none pointer-events-none group-hover:text-amber-200 transition-colors">“</span>
+                                
+                                <div>
+                                    <!-- Verified Purchase Badge Bar -->
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold">
+                                            ✓ Verified Buyer • Bengaluru Galleria
+                                        </span>
+                                        <div class="flex text-amber-400 text-sm">★★★★★</div>
+                                    </div>
+
+                                    <h4 class="font-serif text-lg text-[#4a1c1d] font-bold mb-2 leading-snug">"Bridal Masterpiece Worth Every Penny!"</h4>
+                                    <p class="text-gray-600 text-xs leading-relaxed mb-6 font-light">"Bought my bridal gold set from Rajwada. The transparent price breakdown with metal rates and making charges gave complete trust. Received endless compliments!"</p>
+                                </div>
+
+                                <!-- Customer Profile & Purchased Product Footer -->
+                                <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full border-2 border-[#b58b4c] p-0.5 overflow-hidden shrink-0 shadow-sm">
+                                            <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=200&q=80" alt="Priya Sharma" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <div>
+                                            <h5 class="font-serif font-bold text-sm text-gray-900">Priya Sharma</h5>
+                                            <p class="text-[10px] text-[#b58b4c] font-semibold">Bengaluru, Karnataka</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Purchased Item Thumbnail -->
+                                    <div class="w-11 h-11 rounded-lg border border-gray-200 overflow-hidden shrink-0 bg-gray-50 shadow-inner" title="Purchased: Bridal Set">
+                                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b8548e?auto=format&fit=crop&w=150&q=80" alt="Bridal Set" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Carousel Page Dots -->
+                    <div id="review-dots" class="flex justify-center items-center gap-2 mt-8"></div>
+                </div>
+            </div>
+
+            <!-- Write a Review Modal -->
+            <div id="write-review-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-[130] hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="closeWriteReviewModal(event)">
+                <div class="bg-white max-w-lg w-full rounded-2xl shadow-2xl relative overflow-hidden transform scale-95 transition-all duration-300 border border-amber-200 p-6 md:p-8" onclick="event.stopPropagation()">
+                    <button onclick="closeWriteReviewModal(null, true)" class="absolute top-4 right-4 text-gray-400 hover:text-[#4a1c1d] p-1 bg-gray-50 rounded-full">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+
+                    <div class="text-center mb-6">
+                        <span class="text-2xl block mb-1">👑</span>
+                        <h3 class="font-serif font-bold text-2xl text-[#4a1c1d]">Write a Royal Review</h3>
+                        <p class="text-xs text-gray-500 mt-1">Share your experience with Rajwada Jewellers</p>
+                    </div>
+
+                    <form onsubmit="handleReviewSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Your Rating *</label>
+                            <div class="flex items-center gap-2 text-2xl text-amber-400 cursor-pointer" id="star-rating-picker">
+                                <span onclick="setRating(1)">★</span>
+                                <span onclick="setRating(2)">★</span>
+                                <span onclick="setRating(3)">★</span>
+                                <span onclick="setRating(4)">★</span>
+                                <span onclick="setRating(5)">★</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Your Name *</label>
+                                <input type="text" id="rev-name" class="w-full px-3 py-2 rounded-lg border text-xs bg-gray-50 focus:bg-white focus:border-[#4a1c1d]" placeholder="Princess Ananya" required>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">City / Showroom *</label>
+                                <input type="text" id="rev-city" class="w-full px-3 py-2 rounded-lg border text-xs bg-gray-50 focus:bg-white focus:border-[#4a1c1d]" placeholder="Jaipur" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Product Purchased</label>
+                            <input type="text" id="rev-product" class="w-full px-3 py-2 rounded-lg border text-xs bg-gray-50 focus:bg-white focus:border-[#4a1c1d]" placeholder="e.g. Royal Kundan Necklace">
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Headline / Quote *</label>
+                            <input type="text" id="rev-title" class="w-full px-3 py-2 rounded-lg border text-xs bg-gray-50 focus:bg-white focus:border-[#4a1c1d]" placeholder="e.g. Absolutely Stunning Work!" required>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Detailed Review *</label>
+                            <textarea id="rev-body" rows="3" class="w-full px-3 py-2 rounded-lg border text-xs bg-gray-50 focus:bg-white focus:border-[#4a1c1d] resize-none" placeholder="Tell us about the craftsmanship, fitting, or store experience..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-[#4a1c1d] text-white py-3 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-[#b58b4c] transition-colors shadow-md">
+                            Submit Review
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <script>
+            (function() {
+                const cards = document.getElementById('review-cards');
+                const prevBtn = document.getElementById('review-prev');
+                const nextBtn = document.getElementById('review-next');
+                const dotsContainer = document.getElementById('review-dots');
+                if (!cards) return;
+
+                let current = 0;
+                function getVisible() { return window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 640 ? 2 : 1); }
+                function getCardWidth() { return cards.children[0] ? cards.children[0].offsetWidth + 24 : 350; }
+                function getMaxScroll() { return Math.max(0, cards.children.length - getVisible()); }
+
+                function update() {
+                    const max = getMaxScroll();
+                    current = Math.max(0, Math.min(current, max));
+                    cards.style.transform = `translateX(-${current * getCardWidth()}px)`;
+                    buildDots();
+                }
+
+                function buildDots() {
+                    if (!dotsContainer) return;
+                    dotsContainer.innerHTML = '';
+                    const max = getMaxScroll();
+                    for (let i = 0; i <= max; i++) {
+                        const dot = document.createElement('button');
+                        dot.className = 'h-2 rounded-full transition-all duration-300 ' + (i === current ? 'w-8 bg-[#4a1c1d]' : 'w-2 bg-gray-300 hover:bg-[#b58b4c]');
+                        dot.onclick = () => { current = i; update(); };
+                        dotsContainer.appendChild(dot);
+                    }
+                }
+
+                if (prevBtn) prevBtn.onclick = () => { current = Math.max(0, current - 1); update(); };
+                if (nextBtn) nextBtn.onclick = () => { current = Math.min(getMaxScroll(), current + 1); update(); };
+
+                window.addEventListener('resize', update);
+                setTimeout(update, 100);
+            })();
+
+            let selectedUserRating = 5;
+            function setRating(r) {
+                selectedUserRating = r;
+                const picker = document.getElementById('star-rating-picker');
+                if (picker) {
+                    const stars = picker.querySelectorAll('span');
+                    stars.forEach((s, idx) => {
+                        s.style.color = idx < r ? '#f59e0b' : '#d1d5db';
+                    });
+                }
+            }
+
+            function openWriteReviewModal() {
+                const modal = document.getElementById('write-review-modal');
+                if (modal) {
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                    setTimeout(() => {
+                        modal.classList.remove('opacity-0');
+                        modal.querySelector('div').classList.remove('scale-95');
+                    }, 10);
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function closeWriteReviewModal(e, force = false) {
+                if (!force && e && e.target.id !== 'write-review-modal') return;
+                const modal = document.getElementById('write-review-modal');
+                if (modal) {
+                    modal.classList.add('opacity-0');
+                    modal.querySelector('div').classList.add('scale-95');
+                    document.body.style.overflow = '';
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                    }, 300);
+                }
+            }
+
+            function handleReviewSubmit(e) {
+                e.preventDefault();
+                const name = document.getElementById('rev-name').value.trim();
+                const city = document.getElementById('rev-city').value.trim();
+                const product = document.getElementById('rev-product').value.trim() || 'Royal Jewellery Piece';
+                const title = document.getElementById('rev-title').value.trim();
+                const body = document.getElementById('rev-body').value.trim();
+
+                closeWriteReviewModal(null, true);
+
+                // Prepend new review card
+                const cards = document.getElementById('review-cards');
+                if (cards) {
+                    const newCard = document.createElement('div');
+                    newCard.className = 'flex-shrink-0 w-[300px] md:w-[350px] bg-white rounded-2xl shadow-sm border border-amber-100/80 p-6 hover:shadow-2xl hover:border-[#b58b4c] transition-all duration-500 flex flex-col justify-between relative group';
+                    newCard.innerHTML = `
+                        <span class="absolute top-4 right-6 text-6xl font-serif text-amber-100 font-bold select-none pointer-events-none">“</span>
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200/60 px-2.5 py-0.5 rounded-full text-[10px] font-bold">
+                                    ✓ Verified Buyer • ${city}
+                                </span>
+                                <div class="flex text-amber-400 text-sm">${'★'.repeat(selectedUserRating)}</div>
+                            </div>
+                            <h4 class="font-serif text-lg text-[#4a1c1d] font-bold mb-2 leading-snug">"${title}"</h4>
+                            <p class="text-gray-600 text-xs leading-relaxed mb-6 font-light">"${body}"</p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full border-2 border-[#b58b4c] bg-amber-50 text-[#4a1c1d] font-bold font-serif flex items-center justify-center text-sm shadow-sm">
+                                    ${name.charAt(0)}
+                                </div>
+                                <div>
+                                    <h5 class="font-serif font-bold text-sm text-gray-900">${name}</h5>
+                                    <p class="text-[10px] text-[#b58b4c] font-semibold">${city}</p>
+                                </div>
+                            </div>
+                            <div class="text-[10px] font-bold text-gray-400 bg-gray-50 px-2 py-1 rounded border">
+                                ${product}
+                            </div>
+                        </div>
+                    `;
+                    cards.insertBefore(newCard, cards.firstChild);
+                    if (window.toast) window.toast.show('Thank you! Your royal review has been posted.');
+                }
+            }
+            </script>
+        </section>
+    </main>
+
+        <!-- Curved Arch Border -->
+    <div class="w-full overflow-hidden leading-none bg-white" style="line-height:0; margin-bottom:-2px;">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" style="height:60px; display:block;">
+            <!-- Two arch curves meeting in the center like an open book -->
+            <path d="M0,0 L0,60 Q360,0 720,30 Q1080,60 1440,0 L1440,60 Z" fill="#3d1f10"/>
+        </svg>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-dark-brown text-champagne pt-8 md:pt-10 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-8 md:mb-4 md:mb-6">
+                <div>
+                    <h3 class="text-3xl font-serif font-bold text-gold mb-6 tracking-widest">RAJWADA</h3>
+                    <p class="text-sm mb-6 leading-relaxed font-light text-gray-300">Crafting timeless luxury and preserving the grandeur of royal heritage through magnificent jewellery masterpieces since 1985.</p>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg text-white mb-6 uppercase tracking-wider">Collections</h4>
+                    <ul class="space-y-3 font-light text-sm text-gray-300">
+                        <li><a href="#" class="hover:text-gold transition-colors">Bridal Masterpieces</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">Diamond Pavilion</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">Heritage Gold</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">Everyday Elegance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg text-white mb-6 uppercase tracking-wider">Customer Care</h4>
+                    <ul class="space-y-3 font-light text-sm text-gray-300">
+                        <li><a href="contact.html" class="hover:text-gold transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">Shipping & Returns</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">Jewellery Care</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-lg text-white mb-6 uppercase tracking-wider">Newsletter</h4>
+                    <p class="text-sm mb-4 font-light text-gray-300">Subscribe for exclusive collections.</p>
+                    <form class="flex border border-gray-600 rounded-sm overflow-hidden focus-within:border-gold transition-colors">
+                        <input type="email" placeholder="Email Address" class="w-full bg-transparent px-4 py-3 text-sm focus:outline-none text-white placeholder-gray-500">
+                        <button type="submit" class="bg-gold text-dark-brown px-6 font-bold uppercase tracking-wider text-xs hover:bg-white transition-colors">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex justify-between text-xs font-light text-gray-400">
+                <p>&copy; 2024 Rajwada Jewellers. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-gold transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-gold transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/contact-page.js"></script>
+</body>
+</html>
