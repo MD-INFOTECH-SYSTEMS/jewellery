@@ -32,7 +32,7 @@ const navigation = {
                                 <p class="text-xs text-gray-500">Explore handcrafted royal jewellery collections</p>
                             </div>
                             <div class="flex items-center gap-4">
-                                <a href="categories.html" class="text-xs font-bold text-[#b58b4c] uppercase tracking-wider hover:text-[#4a1c1d] transition-colors">
+                                <a href="products.html" class="text-xs font-bold text-[#b58b4c] uppercase tracking-wider hover:text-[#4a1c1d] transition-colors">
                                     Central Store &rarr;
                                 </a>
                                 <a href="contact.html" class="text-xs font-bold bg-amber-50 text-[#4a1c1d] px-3 py-1.5 rounded-full border border-amber-200 hover:bg-[#4a1c1d] hover:text-white transition-colors">
@@ -42,7 +42,7 @@ const navigation = {
                         </div>
 
                         ${categories.map(cat => `
-                            <a href="index.html?category=${cat.path}" class="group flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
+                            <a href="products.html?category=${cat.path}" class="group flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
                                 <div class="w-10 h-10 rounded-full bg-[#f9f6f0] flex items-center justify-center group-hover:bg-[#4a1c1d] transition-colors">
                                     <span class="text-[#b58b4c] font-serif font-bold text-lg group-hover:text-white transition-colors">${cat.name.charAt(0)}</span>
                                 </div>
@@ -121,7 +121,7 @@ const navigation = {
                             <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-bold text-gray-700 hover:bg-amber-50 hover:text-[#4a1c1d] transition-colors">
                                 🏠 Home
                             </a>
-                            <a href="categories.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-bold text-gray-700 hover:bg-amber-50 hover:text-[#4a1c1d] transition-colors">
+                            <a href="products.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-bold text-gray-700 hover:bg-amber-50 hover:text-[#4a1c1d] transition-colors">
                                 💎 Central Store & Catalog
                             </a>
                             <a href="contact.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-bold text-[#4a1c1d] bg-amber-50 border border-amber-200/80 transition-colors">
@@ -141,12 +141,12 @@ const navigation = {
                         <div class="mt-6 pt-6 border-t border-gray-100">
                             <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-3">Jewellery Categories</span>
                             <div class="grid grid-cols-2 gap-2 text-xs">
-                                <a href="index.html?category=Gold" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Gold</a>
-                                <a href="index.html?category=Diamond" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Diamond</a>
-                                <a href="index.html?category=Earrings" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Earrings</a>
-                                <a href="index.html?category=Rings" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Rings</a>
-                                <a href="index.html?category=Necklaces" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Necklaces</a>
-                                <a href="index.html?category=Wedding" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Wedding</a>
+                                <a href="products.html?category=Gold" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Gold</a>
+                                <a href="products.html?category=Diamond" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Diamond</a>
+                                <a href="products.html?category=Earrings" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Earrings</a>
+                                <a href="products.html?category=Rings" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Rings</a>
+                                <a href="products.html?category=Necklaces" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Necklaces</a>
+                                <a href="products.html?category=Wedding" class="p-2 bg-gray-50 rounded font-semibold text-gray-700 hover:text-[#4a1c1d]">Wedding</a>
                             </div>
                         </div>
                     </div>

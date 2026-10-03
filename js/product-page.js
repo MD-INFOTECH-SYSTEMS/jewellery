@@ -1,16 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const productId = parseInt(urlParams.get('id'));
+    const rawId = urlParams.get('id');
+    const productId = rawId ? parseInt(rawId) : null;
     const container = document.getElementById('product-container');
 
     if (!container) return;
 
-    if (!productId || isNaN(productId)) {
-        renderError("Invalid Product ID");
-        return;
+    const allProducts = window.products || [];
+    let product = null;
+
+    if (productId && !isNaN(productId)) {
+        product = allProducts.find(p => p.id === productId);
     }
 
-    const product = window.products ? window.products.find(p => p.id === productId) : null;
+    // Fallback to flagship product if no ID provided or product ID not found
+    if (!product && allProducts.length > 0) {
+        product = allProducts[0];
+    }
 
     if (!product) {
         renderError("Product Not Found");
@@ -28,8 +34,8 @@ function renderError(message) {
             <svg class="w-20 h-20 text-[#b58b4c] mb-6 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
             <h2 class="text-3xl font-serif text-[#4a1c1d] font-bold mb-3">${message}</h2>
             <p class="text-gray-500 mb-8 text-sm max-w-md">The jewellery item you are looking for does not exist or has been removed from our royal catalog.</p>
-            <a href="index.html" class="bg-[#4a1c1d] text-white px-8 py-3.5 rounded-sm hover:bg-[#b58b4c] transition-colors font-bold uppercase tracking-wider text-xs shadow-md">
-                Discover Catalog
+            <a href="products.html" class="bg-[#4a1c1d] text-white px-8 py-3.5 rounded-sm hover:bg-[#b58b4c] transition-colors font-bold uppercase tracking-wider text-xs shadow-md">
+                Discover Products Store
             </a>
         </div>
     `;
@@ -128,9 +134,9 @@ function renderProduct(product) {
     container.innerHTML = `
         <!-- Breadcrumb & Top Controls -->
         <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
-            <a href="index.html" class="text-gray-500 hover:text-[#4a1c1d] transition-colors text-xs font-semibold flex items-center gap-2 w-fit uppercase tracking-wider">
+            <a href="products.html" onclick="event.preventDefault(); if (document.referrer && (document.referrer.includes('products.html') || document.referrer.includes('categories.html'))) { window.history.back(); } else { window.location.href='products.html'; }" class="text-gray-500 hover:text-[#4a1c1d] transition-colors text-xs font-semibold flex items-center gap-2 w-fit uppercase tracking-wider cursor-pointer">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                Back to Catalog
+                Back to Products Page
             </a>
             <div class="flex items-center gap-3">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-[#b58b4c] border border-amber-200/60 rounded-full text-[11px] font-bold">
@@ -498,19 +504,33 @@ function renderProduct(product) {
 
                 <!-- Carousel Track -->
                 <div id="related-products-track" class="flex gap-6 overflow-x-auto scrollbar-hide snap-x scroll-smooth py-2">
-                    ${relatedProducts.map(rel => `
-                        <div class="w-72 sm:w-80 shrink-0 snap-start bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer" onclick="window.location.href='product.html?id=${rel.id}'">
-                            <div class="aspect-square overflow-hidden relative bg-gray-50">
-                                <img src="${rel.image}" alt="${rel.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80';">
-                                ${rel.badge ? `<span class="absolute top-3 left-3 bg-[#b58b4c] text-white text-[9px] font-bold px-2 py-0.5 uppercase tracking-wider rounded-sm shadow-sm">${rel.badge}</span>` : ''}
+                    ${relatedProducts.map(rel => {
+                        const hasMultipleImgs = rel.images && rel.images.length > 1;
+                        const secondImg = hasMultipleImgs ? rel.images[1] : (rel.image || 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=80');
+
+                        return `
+                            <div class="w-72 sm:w-80 shrink-0 snap-start bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer" onclick="window.location.href='product.html?id=${rel.id}'">
+                                <div class="aspect-square relative overflow-hidden bg-gray-50 twist-card">
+                                    <div class="twist-inner">
+                                        <!-- Front Image -->
+                                        <div class="twist-front">
+                                            <img src="${rel.image}" alt="${rel.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80';">
+                                        </div>
+                                        <!-- Back Image (Shown on 3D Twist Hover) -->
+                                        <div class="twist-back">
+                                            <img src="${secondImg}" alt="${rel.name} - View 2" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=80';">
+                                        </div>
+                                    </div>
+                                    ${rel.badge ? `<span class="absolute top-3 left-3 z-10 bg-[#b58b4c] text-white text-[9px] font-bold px-2 py-0.5 uppercase tracking-wider rounded-sm shadow-sm pointer-events-none">${rel.badge}</span>` : ''}
+                                </div>
+                                <div class="p-4 flex flex-col flex-grow text-center">
+                                    <span class="text-[10px] text-[#b58b4c] uppercase font-bold tracking-widest mb-1">${rel.category}</span>
+                                    <h4 class="font-serif text-sm text-[#4a1c1d] font-bold mb-1 line-clamp-1">${rel.name}</h4>
+                                    <p class="text-sm font-bold text-[#4a1c1d] mt-auto">₹${rel.price.toLocaleString()}</p>
+                                </div>
                             </div>
-                            <div class="p-4 flex flex-col flex-grow text-center">
-                                <span class="text-[10px] text-[#b58b4c] uppercase font-bold tracking-widest mb-1">${rel.category}</span>
-                                <h4 class="font-serif text-sm text-[#4a1c1d] font-bold mb-1 line-clamp-1">${rel.name}</h4>
-                                <p class="text-sm font-bold text-[#4a1c1d] mt-auto">₹${rel.price.toLocaleString()}</p>
-                            </div>
-                        </div>
-                    `).join('')}
+                        `;
+                    }).join('')}
                 </div>
             </div>
         ` : ''}
